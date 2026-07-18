@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c5b4f" />
+  <title>MamaSense — PPH Risk Screening</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="MamaSense home">
+      <span class="brand-mark">M</span>
+      <span>MamaSense<small>Safer births start earlier</small></span>
+    </a>
+    <label class="language">Language
+      <select id="languageSelect" aria-label="Select language">
+        <option value="en">English</option><option value="yo">Yorùbá</option>
+        <option value="ha">Hausa</option><option value="ig">Igbo</option>
+      </select>
+    </label>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <span class="eyebrow">ANTENATAL DECISION SUPPORT</span>
+        <h1>Spot PPH risk<br><em>before delivery.</em></h1>
+        <p>MamaSense turns routine ANC observations into a clear risk tier and a portable birth-preparedness card.</p>
+      </div>
+      <div class="hero-stat"><strong>4</strong><span>routine inputs</span><small>One actionable result</small></div>
+    </section>
+
+    <section class="workspace">
+      <form id="riskForm" class="panel form-panel">
+        <div class="panel-heading">
+          <div><span class="step">01</span><h2>Patient screening</h2></div>
+          <button type="button" class="text-button" id="sampleBtn">Use sample data</button>
+        </div>
+
+        <div class="field full">
+          <label for="patientName">Patient name or ID</label>
+          <input id="patientName" required placeholder="e.g. Amina Yusuf" autocomplete="off" />
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="gestation">Gestational age</label><div class="input-unit"><input id="gestation" type="number" min="1" max="42" required placeholder="32"><span>weeks</span></div></div>
+          <div class="field"><label for="bmi">Body mass index</label><div class="input-unit"><input id="bmi" type="number" step="0.1" min="10" max="60" required placeholder="24.5"><span>kg/m²</span></div></div>
+          <div class="field"><label for="haemoglobin">Haemoglobin</label><div class="input-unit"><input id="haemoglobin" type="number" step="0.1" min="3" max="20" required placeholder="11.0"><span>g/dL</span></div><small>Latest ANC reading</small></div>
+          <div class="field"><label for="systolic">Blood pressure</label><div class="bp-row"><div class="input-unit"><input id="systolic" type="number" min="60" max="240" required placeholder="120"><span>SYS</span></div><b>/</b><div class="input-unit"><input id="diastolic" type="number" min="30" max="160" required placeholder="80"><span>DIA</span></div></div></div>
+        </div>
+
+        <fieldset>
+          <legend>Previous caesarean section?</legend>
+          <label class="choice"><input type="radio" name="cs" value="no" checked><span>No</span></label>
+          <label class="choice"><input type="radio" name="cs" value="yes"><span>Yes</span></label>
+        </fieldset>
+
+        <div class="form-note"><span>i</span><p>This prototype is a decision-support demonstration. It does not replace clinical judgement or local emergency protocols.</p></div>
+        <button class="primary" type="submit">Assess PPH risk <span>→</span></button>
+      </form>
+
+      <section class="panel result-panel" id="resultPanel" aria-live="polite">
+        <div id="emptyState" class="empty-state">
+          <div class="pulse-icon"><span>♡</span></div>
+          <h2>Ready to assess</h2>
+          <p>Complete the patient’s routine ANC observations to generate a risk tier and preparation plan.</p>
+          <ol><li><span>1</span>Enter routine ANC data</li><li><span>2</span>Review the risk factors</li><li><span>3</span>Share the Risk Card</li></ol>
+        </div>
+
+        <div id="resultState" class="result-state" hidden>
+          <div class="result-top"><span class="step">02</span><span id="screeningDate"></span></div>
+          <div class="risk-summary">
+            <div class="risk-ring"><span id="riskScore">0</span><small>/ 10</small></div>
+            <div><span id="riskBadge" class="risk-badge">LOW RISK</span><h2 id="resultTitle">Routine birth preparedness</h2><p id="resultIntro"></p></div>
+          </div>
+          <div class="meter"><span></span></div>
+          <div class="section-block"><h3>What influenced this result</h3><div id="factorList" class="factor-list"></div></div>
+          <div class="section-block"><h3>Recommended preparation</h3><ul id="actionList" class="action-list"></ul></div>
+          <div class="result-actions"><button id="printBtn" class="primary" type="button">Print Risk Card</button><button id="resetBtn" class="secondary" type="button">New assessment</button></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer><span>MamaSense prototype · Team Noesis</span><span>SDG 3 — Good Health & Well-being</span></footer>
+
+  <section id="riskCard" class="risk-card-print" aria-hidden="true">
+    <div class="card-head"><div class="brand"><span class="brand-mark">M</span><span>MamaSense<small>PPH Risk Card</small></span></div><span id="cardBadge"></span></div>
+    <h1 id="cardPatient"></h1><p id="cardMeta"></p>
+    <div class="card-score"><strong id="cardScore"></strong><span id="cardTier"></span></div>
+    <h2>Birth preparedness actions</h2><ul id="cardActions"></ul>
+    <p class="card-warning">Present this card at every ANC visit and on arrival at the delivery facility. This is decision support, not a diagnosis.</p>
+  </section>
+  <script src="app.js"></script>
+</body>
+</html>
