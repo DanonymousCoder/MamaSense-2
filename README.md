@@ -13,6 +13,18 @@ python3 ai/server.py
 
 Then open `http://localhost:4173`.
 
+## Deploy on Netlify
+
+The repository includes dependency-free Netlify Functions and routing in `netlify.toml`. Use these deployment settings:
+
+- Build command: leave empty
+- Publish directory: `.`
+- Functions directory: `netlify/functions`
+
+Netlify routes `/api/predict`, `/api/health`, and `/api/model-card` to serverless functions. The deployed interface uses the same `ai/model/model.json` coefficients as the Python localhost API.
+
+After deployment, open `https://YOUR-SITE.netlify.app/api/health`. It should report `model_version: synthetic-v1` and `runtime: netlify-function`.
+
 ## Demo flow
 
 1. Select **Use sample data** (or enter a patient record).

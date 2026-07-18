@@ -27,3 +27,4 @@ This is a transparent research prototype built around standardised logistic regr
 - `model/model.json` stores the portable trained model and model card metadata.
 - `model/metrics.json` stores held-out evaluation results.
 - `server.py` serves the UI plus `/api/predict`, `/api/health`, and `/api/model-card`.
+- `../netlify/functions/` contains the production serverless equivalent. It reads the same model artifact and preserves the same validation, thresholds, and explanation format.
