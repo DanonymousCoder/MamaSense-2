@@ -1,0 +1,14 @@
+{
+  "test_records": 1200,
+  "event_rate": 0.0767,
+  "auroc": 0.7151,
+  "sensitivity_at_0_08": 0.6196,
+  "specificity_at_0_08": 0.6661,
+  "brier_score": 0.0683,
+  "confusion_matrix_at_0_08": {
+    "tp": 57,
+    "fp": 370,
+    "tn": 738,
+    "fn": 35
+  }
+}

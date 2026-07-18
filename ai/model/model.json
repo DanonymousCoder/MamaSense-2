@@ -1,0 +1,57 @@
+{
+  "model_type": "standardised_logistic_regression",
+  "version": "synthetic-v1",
+  "trained_on": "synthetic_data_only",
+  "features": [
+    "gestational_age",
+    "bmi",
+    "haemoglobin",
+    "systolic_bp",
+    "diastolic_bp",
+    "previous_caesarean"
+  ],
+  "means": [
+    30.489916666666577,
+    26.456312500000024,
+    10.791875,
+    118.92479166666666,
+    75.96979166666667,
+    0.22375
+  ],
+  "scales": [
+    6.013747998798681,
+    5.084361004001435,
+    1.521449632546212,
+    16.1149118946789,
+    10.961966632707691,
+    0.4167564486603824
+  ],
+  "intercept": -2.747512453458277,
+  "coefficients": [
+    0.08194329437552321,
+    0.3726396875179292,
+    -0.45713381316750434,
+    0.2553689567567385,
+    0.25161223204883065,
+    0.27160839590847313
+  ],
+  "risk_thresholds": {
+    "moderate": 0.08,
+    "high": 0.18
+  },
+  "metrics": {
+    "test_records": 1200,
+    "event_rate": 0.0767,
+    "auroc": 0.7151,
+    "sensitivity_at_0_08": 0.6196,
+    "specificity_at_0_08": 0.6661,
+    "brier_score": 0.0683,
+    "confusion_matrix_at_0_08": {
+      "tp": 57,
+      "fp": 370,
+      "tn": 738,
+      "fn": 35
+    }
+  },
+  "disclaimer": "Research prototype only. Not clinically validated."
+}
